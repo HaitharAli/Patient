@@ -1,0 +1,43 @@
+server:
+  port: 9000
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  application:
+    name: patient-module
+
+  cloud:
+    consul:
+      host: host.docker.internal
+      discovery:
+        health-check-path: /test
+        prefer-agent-address: false
+        prefer-ip-address: true     
+  profiles:
+    active:
+    - local
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  endpoint:
+    info:
+      enabled: true
+  info:
+    env:
+      enabled: true
+info:
+  application:
+    name: Patient system
+    description: This application is developed to maintain Patient informations
+    JDK-version: 18
+    spring-boot-version: 2.7
+    Database: MySQL
+jwt:
+  secret : secret
